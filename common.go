@@ -6,6 +6,7 @@ import (
 )
 
 type ProductData struct {
+    ID          int
     Name        string
     Url         string
     Price       float64
@@ -23,8 +24,4 @@ func GetProductData(url string) (data ProductData, err error) {
         err = errors.New("Invalid url. Can't find parser.")
     }
     return
-
-    if condition {
-
-    }
 }
