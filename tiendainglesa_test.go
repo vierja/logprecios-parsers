@@ -37,12 +37,12 @@ func TestTiendaInglesaFetchProduct(t *testing.T) {
 		t.Errorf("TiendaInglesa(%s) returned error %v", url, err)
 	}
 
-	exceptedName := "ARROZ SAMAN PARBOILED 1KG"
+	exceptedName := "Arroz Saman Parboiled 1kg"
 	if productData.Name != exceptedName {
 		t.Errorf("TiendaInglesa(%s).Name = %s, want %s", url, productData.Name, exceptedName)
 	}
 	var expectedPrice float64
-	expectedPrice = 33.00
+	expectedPrice = 37.00
 	if productData.Price != expectedPrice {
 		t.Errorf("TiendaInglesa(%s).Price = %v, want %v", url, productData.Price, expectedPrice)
 	}

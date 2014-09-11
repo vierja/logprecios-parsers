@@ -120,7 +120,7 @@ func TiendaInglesa(url string) (data ProductData, err error) {
 		return
 	}
 	priceStr := results[0].Content()
-	priceSplitList := strings.Split(priceStr, " ")
+	priceSplitList := strings.Fields(priceStr)
 	price, err := strconv.ParseFloat(priceSplitList[len(priceSplitList)-1], 64)
 	if err != nil {
 		log.Printf("Error parsing price")
