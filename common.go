@@ -18,6 +18,7 @@ type ProductData struct {
 const INVALID_PRODUCT_URL int = 300
 const SITE_ERROR int = 500
 const CLIENT_ERROR int = 400
+const PARSING_ERROR int = 400
 
 type ScrapeError struct {
 	Arg  int

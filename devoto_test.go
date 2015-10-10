@@ -42,7 +42,7 @@ func TestDevotoFetchProduct(t *testing.T) {
 		t.Errorf("Devoto(%s).Name = %s, want %s", url, productData.Name, exceptedName)
 	}
 	var expectedPrice float64
-	expectedPrice = 19
+	expectedPrice = 20
 	if productData.Price != expectedPrice {
 		t.Errorf("Devoto(%s).Price = %v, want %v", url, productData.Price, expectedPrice)
 	}

@@ -46,17 +46,17 @@ func Devoto(url string) (data ProductData, err error) {
 	}
 	results, err := doc.Search("//h1")
 	if err != nil {
-		err = errors.New("Error finding h1 tag")
+		err = &ScrapeError{PARSING_ERROR, "Parsing error. No H1."}
 		return
 	}
 	if len(results) == 0 {
-		err = errors.New("No product title found")
+		err = &ScrapeError{PARSING_ERROR, "Parsing error. No product title."}
 		return
 	}
 	name := results[0].Content()
 	results, err = doc.Search("//div[@id='ProductPrice']")
 	if len(results) == 0 {
-		err = errors.New("No price found")
+		err = &ScrapeError{PARSING_ERROR, "Parsing error. No Price."}
 		return
 	}
 	priceStr := results[0].Content()
