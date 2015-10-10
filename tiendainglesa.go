@@ -1,7 +1,6 @@
 package scraping
 
 import (
-	"errors"
 	//"github.com/moovweb/gokogiri"
 	"encoding/json"
 	"fmt"
@@ -98,17 +97,17 @@ func TiendaInglesa(url string) (data ProductData, err error) {
 	defer doc.Free()
 
 	if err != nil {
-		err = errors.New("Error parsing website. ")
+		err = &ScrapeError{PARSING_ERROR, "Parsing error."}
 		return
 	}
 	// Find Title
 	results, err := doc.Search("//h1[@class='titulo_producto_top']")
 	if err != nil {
-		err = errors.New("Error finding h1 tag")
+		err = &ScrapeError{PARSING_ERROR, "Parsing error. No H1."}
 		return
 	}
 	if len(results) == 0 {
-		err = errors.New("No product title found")
+		err = &ScrapeError{PARSING_ERROR, "Parsing error. No product title."}
 		return
 	}
 	name := strings.TrimSpace(results[0].Content())
@@ -116,7 +115,7 @@ func TiendaInglesa(url string) (data ProductData, err error) {
 	// Find Price
 	results, err = doc.Search("//div[@class='contendor_precio']//td[@class='precio']")
 	if len(results) == 0 {
-		err = errors.New("No price found")
+		err = &ScrapeError{PARSING_ERROR, "Parsing error. No Price"}
 		return
 	}
 	priceStr := results[0].Content()

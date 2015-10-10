@@ -1,7 +1,6 @@
 package scraping
 
 import (
-	"errors"
 	"github.com/moovweb/gokogiri"
 	"io/ioutil"
 	"log"
@@ -41,7 +40,7 @@ func Devoto(url string) (data ProductData, err error) {
 	doc, err := gokogiri.ParseHtml(body)
 	defer doc.Free()
 	if err != nil {
-		err = errors.New("Error parsing website. ")
+		err = &ScrapeError{PARSING_ERROR, "Parsing error."}
 		return
 	}
 	results, err := doc.Search("//h1")
